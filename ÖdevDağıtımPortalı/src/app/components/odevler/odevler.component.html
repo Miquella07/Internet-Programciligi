@@ -1,0 +1,110 @@
+<app-header></app-header>
+<div class="container mt-5">
+  <div class="row alert alert-light"  *ngIf="detaylar">
+    <div class="col-md-5 ">
+      <h5 class="text-center">Başlık</h5>
+      <p>{{secOdev.baslik}}</p>
+      <h5 class="text-center ">Ödev</h5>
+      <p>{{secOdev.odev}}</p>
+    </div>
+    <div class="col-md-5">
+      <h5 class="text-center">Kayıt Tarihi</h5>
+      <p>{{secOdev.kayTarih | date:"dd.MM.yyyy HH:mm:ss"}}</p>
+      <h5 class="text-center">Düzenleme Tarihi</h5>
+      <p>{{secOdev.duzTarih | date:"dd.MM.yyyy HH:mm:ss"}}</p>
+    </div>
+    <div class="col-md-2 mt-5">
+      <button class="btn btn-success btn-lg" (click)="Tamamla(secOdev,true);">Tamamlandı</button>
+      <button class="btn btn-danger btn-lg mt-1"(click)="detaylar=false;" >Kapat</button>
+    </div>
+  </div>
+
+  <div class="row alert alert-light" *ngIf="notekle">
+    <form #frm="ngForm" class="col-md-10" (submit)="NotKaydet()">
+      <div class="card-body">
+          <div class="form-group">
+              <label class="text-center">Başlık </label>
+              <input type="text" name="baslik" class="form-control" [(ngModel)]="secNot.baslik">
+          </div>
+          <div class="form-group">
+              <label>Konu </label>
+              <input type="text" name="konu" class="form-control" [(ngModel)]="secNot.konu">
+          </div>
+          <div class="form-group">
+              <label>Kullanıcı Adı</label>
+              <input type="text" name="odev" class="form-control" [(ngModel)]="secNot.kullaniciad">
+          </div>
+      </div>
+      <div class="card-footer">
+          <div class="form-group">
+              <label> </label>
+              <input type="submit" name="Kaydet" class="btn btn-success btn-lg form-control">
+          </div>
+          <div [ngClass]="sonuc.islem ? 'alert alert-success' : 'alert alert-danger'" *ngIf="sonuc.mesaj?.length>0">{{sonuc.mesaj}}</div>
+      </div>
+  </form>
+    <div class="col-md-2 mt-5">
+      <button class="btn btn-danger"(click)="notekle=false;" >Kapat</button>
+    </div>
+  </div>
+
+<div class="row alert alert-light" *ngIf="notdetay">
+  <div class="col-md-5 ">
+    <h5 class="text-center">Başlık</h5>
+    <p>{{secNot.baslik}}</p>
+    <h5 class="text-center ">Konu</h5>
+    <p>{{secNot.konu}}</p>
+  </div>
+  <div class="col-md-5">
+    <h5 class="text-center">Kayıt Tarihi</h5>
+    <p>{{secNot.kayTarih | date:"dd.MM.yyyy HH:mm:ss"}}</p>
+    <h5 class="text-center">Yazan</h5>
+    <p>{{secNot.kullaniciad}}</p>
+  </div>
+  <div class="col-md-2 mt-5">
+    <button class="btn btn-danger"(click)="notdetay=false;" >Kapat</button>
+  </div>
+</div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <h4 class="text-center">Ödev Listesi</h4>
+      <table class="table table-hover">
+        <thead class="">
+          <th>Ders</th>
+          <th>Başlık</th>
+          <th>Yayımlanma Tarihi</th>
+          <th>Durum</th>
+          <th>Detay</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let odev of odevler">
+            <td class="font-weight-bold">{{odev.dersId}}</td>
+            <td class="font-weight-bold">{{odev.baslik}}</td>
+            <td class="font-weight-bold">{{odev.kayTarih | date:"dd.MM.yyyy HH:mm:ss"}}</td>
+            <td><span class="badge badge-pill bg-success text-white" *ngIf="odev.islem">Tamamlandı</span>
+                <span class="badge badge-pill bg-warning text-white" *ngIf="!odev.islem">Bekliyor</span></td>
+            <td><button class="btn btn-info btn-sm" (click)="OdevSec(odev); detaylar=true; notekle=false; notdetay=false;">Detaylar</button></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-4">
+      <h4 class="text-center">Notlar</h4>
+      <table class="table table-hover">
+        <thead>
+          <th>Başlık</th>
+          <th>Detay</th>
+          <th><button type="button" class="btn btn-info btn-sm ml-5" (click)="notekle=true;">Not Ekle</button></th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let not of notlar">
+            <td class="font-weight-bold">{{not.baslik}}</td>
+            <td><button class="btn btn-secondary btn-sm" (click)="NotSec(not); detaylar=false; notdetay=true;">Detay</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <app-footer></app-footer>

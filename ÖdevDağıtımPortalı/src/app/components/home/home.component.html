@@ -1,0 +1,35 @@
+<app-header></app-header>
+<div class="container mt-5">
+    <div class="row">
+        <img src="assets/img/background.jpg" alt="" class="rounded img img-fluid">
+        </div>
+        <div class="row">
+            <h2>What is Lorem Ipsum?</h2><br />
+            <p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry.<br />
+                Lorem Ipsum has been the industry's standard dummy text ever since the<br /> 1500s, when an unknown
+                printer took a galley of type and scrambled it to<br /> make a type specimen book. It has survived not
+                only five centuries, but also<br /> the leap into electronic typesetting, remaining essentially
+                unchanged.<br />It was popularised in the 1960s with the release of Letraset sheets containing<br />
+                Lorem Ipsum passages, and more recently with desktop publishing software<br /> like Aldus PageMaker
+                including versions of Lorem Ipsum.</p>
+        </div>
+        <div class="row alert alert-warning " *ngIf="!fbServis.OturumKontrol()">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <h6>
+                    <p class="text-center text-justify">Programı kullanmaya devam etmek için; hesap oluşturmalı ve giriş
+                        yapmalısınız.</p>
+                </h6>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-6">
+                <app-login></app-login>
+            </div>
+            <div class="col-md-6">
+                <app-register></app-register>
+            </div>
+        </div>
+    </div>
+
+
+    <app-footer></app-footer>

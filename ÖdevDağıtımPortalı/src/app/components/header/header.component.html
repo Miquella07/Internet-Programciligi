@@ -1,0 +1,23 @@
+<header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar header">
+  <div class="navbar-nav-scroll ml-5">
+      <ul class="navbar-nav bd-navbar-nav flex-row">
+          <li class="nav-item">
+              <a class="nav-link " href="/">Anasayfa</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link " [routerLink]="['/odevler']" *ngIf="fbServis.OturumKontrol()">Ödevler</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link " [routerLink]="['/admin']" *ngIf="fbServis.OturumKontrol()">Admin Panel</a>
+          </li>
+      </ul>
+  </div>
+  <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+      <a class="nav-item nav-link  mr-md-2" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         Merhaba, <b>{{adsoyad}}</b> 
+      </a>
+      
+  </ul>
+  <a class="btn btn-bd-primary d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" [routerLink]="['/login']" *ngIf="!fbServis.OturumKontrol()">Giriş Yap</a>
+  <a class="btn btn-bd-primary d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" (click)="OturumKapat()" *ngIf="fbServis.OturumKontrol()">Oturumu Kapat</a>
+</header>
