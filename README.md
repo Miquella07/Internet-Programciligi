@@ -1,2 +1,2 @@
-# -nternet-Programc-l-
+# Internet-Programciligi
 Ödev Dağıtım Portalı Angular and Firebase
